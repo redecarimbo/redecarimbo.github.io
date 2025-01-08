@@ -1,0 +1,377 @@
+<html><head><base href="." /><title>Rede Carimbo - Comunicação Paraense</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+:root {
+  --primary: #007f4e;
+  --secondary: #ffd700;
+  --dark: #1a1a1a;  
+  --light: #f5f5f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--light);
+}
+
+.header {
+  background: var(--primary);
+  padding: 0.5rem;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo img {
+  width: 60px;
+  height: auto;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 100;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background: var(--dark);
+  padding: 2rem;
+  transition: right 0.3s ease;
+  z-index: 99;
+}
+
+nav.active {
+  right: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin-top: 60px;
+}
+
+nav li {
+  margin: 1.5rem 0;
+}
+
+nav a {
+  color: var(--light);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--secondary);
+  transition: width 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: var(--secondary);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 98;
+  backdrop-filter: blur(3px);
+}
+
+.overlay.active {
+  display: block;
+}
+
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?ixlib=rb-4.0.3') center/cover;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  100% {
+    left: 100%;
+  }
+}
+
+.content {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-access {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.btn-access:hover {
+  background: #006040;
+  transform: translateY(-2px);
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 300px;
+  }
+  
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+  
+  .content {
+    padding: 0 1rem;
+  }
+}
+</style></head><body>
+
+<header class="header">
+  <div class="logo">
+    <img src="/LogoRedeCarimbo.png" alt="Logo Rede Carimbo">
+    <h1>Rede Carimbo</h1>
+  </div>
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<div class="overlay"></div>
+
+<nav>
+  <ul>
+    <li><a href="https://redecarimbo.github.io/tv">TV Carimbo</a></li>
+    <li><a href="https://redecarimbo.github.io/radio">Rádio Carimbo</a></li>
+    <li><a href="https://jogosdeinclusao.github.io/">Jogos de Inclusão</a></li>
+    <li><a href="https://carimboplus.github.io/">Carimbo+</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <h2>Rede de Comunicação Brasileiro e Paraense</h2>
+    <p>Levando cultura, entretenimento e informação para todo o Pará.</p>
+  </div>
+</section>
+
+<main class="content">
+  <h2>Bem-vindo à Rede Carimbo</h2>
+  <p>A maior rede de comunicação do Pará, trazendo o melhor da cultura paraense, entretenimento e notícias relevantes para você.</p>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>TV Carimbo</h3>
+      <p>Programação diversificada com conteúdo local e nacional. Shows, documentários e programas especiais sobre nossa rica cultura.</p>
+      <a href="https://redecarimbo.github.io/tv" class="btn-access">Acessar</a>
+    </div>
+    
+    <div class="card">
+      <h3>Rádio Carimbo</h3>
+      <p>24 horas de música, informação e entretenimento. A melhor seleção musical paraense e brasileira.</p>
+      <a href="https://redecarimbo.github.io/radio" class="btn-access">Acessar</a>
+    </div>
+    
+    <div class="card">
+      <h3>Jogos de Inclusão</h3>
+      <p>Plataforma de jogos acessíveis e inclusivos, desenvolvidos para proporcionar diversão e aprendizado para todos, com recursos especiais de acessibilidade.</p>
+      <a href="https://jogosdeinclusao.github.io/" class="btn-access">Acessar</a>
+    </div>
+
+    <div class="card">
+      <h3>Carimbo+</h3>
+      <p>É um serviço de streaming com conteúdo de entretenimento e exclusivo da Rede Carimbo em primeira mão.</p>
+      <a href="https://carimboplus.github.io/" class="btn-access">Acessar</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&#169; 2025 Rede Carimbo - Todos os direitos reservados</p>
+  <p>Estúdio da Rede Carimbo - Belém, PA</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+  const overlay = document.querySelector('.overlay');
+  
+  hamburger.addEventListener('click', function() {
+    nav.classList.toggle('active');
+    overlay.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  });
+
+  overlay.addEventListener('click', function() {
+    nav.classList.remove('active');
+    overlay.classList.remove('active');
+    hamburger.classList.remove('active');
+  });
+
+  // Card animations with intersection observer
+  const cards = document.querySelectorAll('.card');
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  cards.forEach(card => {
+    card.style.opacity = 0;
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s, transform 0.5s';
+    observer.observe(card);
+  });
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+});
+</script>
+
+</body></html>
